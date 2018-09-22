@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Employee Data Management</title>
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="css/mdb.min.css" rel="stylesheet">
+    
+</head>
+
+<body ng-app="crudapp">
+        <div class="container" ng-controller="AppController">
+        <h1 class="text-center">Employee Data Management</h1>
+        <br>
+        <form name="form1" novalidate>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3" >
+                    <select   ng-model="searchby">
+                        <option value="$"></option>
+                        <option value="name">name</option>
+                        <option value="email">email</option>
+                        
+                    </select>
+                    <input  type="text" placeholder="Search Here" name="search" ng-model="search[searchby]">
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col-md-3">
+                    <input name="name" type="text" placeholder="Name" ng-model="name" required class="validate">
+                    <span ng-show="form1.$submitted && form1.name.$error.required" class="text-danger">Name required!</span>
+                </div>
+                <div class="input-field col-md-3">
+                    <input name="email" type="email" placeholder="Email" ng-model="email" required class="validate">
+                    <span ng-show="form1.$submitted && form1.email.$error.required" class="text-danger">Email required!</span>
+                </div>
+                <div class="input-field col-md-3">
+                    <input name="password" type="password" placeholder="Password" ng-model="password" required class="validate">
+                    <span ng-show="form1.$submitted && form1.password.$error.required" class="text-danger">Password required!</span>
+                </div>
+            </div>
+            
+            <button ng-click="form1.$valid && AddIt();" ng-if="addbtn" class="btn btn-primary waves-effect waves-light"><i class="fa fa-plus"></i> Add</button>
+            <button ng-click="form1.$valid && form1.$dirty && UpdateIt();" ng-if="updatebtn" class="btn btn-success waves-effect waves-light"><i class="fa fa-check"></i> Update</button>
+        </form>
+        <br>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 ">
+                <br>
+                <h4 class="text-center">The Information</h4>
+                <table class="table table-hover table-bordered ">
+                    <thead class="alert-warning">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Image</th>
+                            <th width="17%">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-init="ReadIt();">
+                        <tr ng-repeat="item in items | filter:search">
+                            <td>{{item.name}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.password}}</td>
+                            <td>{{item.image}}</td>
+                            <td>
+                                <button ng-click="EditIt(item.id, item.name, item.email, item.password);" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-pencil"></i></button>
+                                <button ng-click="DeleteIt(item.id);" class="btn btn-sm btn-danger waves-effect waves-light"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
+    <!-- Material Design Bootstrap -->
+    <script src="js/mdb.min.js "></script>
+    <script src="js/angular.min.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+</body>
+
+</html>
