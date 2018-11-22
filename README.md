@@ -1,18 +1,5 @@
-# :heavy_check_mark: Angular PHP CRUD Oprations
+# : CRUD Operations script using Bootstrap Material, PHP, MySQL and AngularJS 
 
-## A Simple CRUD Operations script using Bootstrap Material, PHP, MySQL and AngularJS 1.4.x
-
-
-
-### :pushpin: Resources Used while Making
-* PHP
-* AngularJS 1.4.x
-* JQuery
-* Bootstrap Material Design
-
-### :pushpin: Installation
-
-**CRUD Oprations with AngularJS** requires PHP 5.6+
 
 Export **angular-DB.sql** file in your database.
 
